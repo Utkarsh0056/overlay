@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eFootball 1v1 Challenge</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      overflow: hidden;
+      font-family: 'Bebas Neue', cursive;
+    }
+
+    .container {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .main-message {
+      font-size: 3em;
+      color: white;
+      background: linear-gradient(135deg, #ff004c, #00ffd5, #ffcc00, #0066ff);
+      background-size: 400% 400%;
+      padding: 20px 40px;
+      border-radius: 20px;
+      animation: gradientMove 6s ease infinite, popUp 1s ease-out;
+      text-shadow: 0 0 15px #000000aa;
+      box-shadow: 0 0 30px #ff004c80, 0 0 50px #00ffd580;
+    }
+
+    .highlight {
+      color: #fff700;
+      text-shadow: 0 0 10px #fff700, 0 0 20px #fff700;
+      animation: popHighlight 1.5s infinite alternate;
+    }
+
+    .cycle-text {
+      margin-top: 20px;
+      font-size: 2em;
+      color: white;
+      animation: fadeCycle 8s infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes popHighlight {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes popUp {
+      0% { transform: translateX(-50%) scale(0.9); opacity: 0; }
+      100% { transform: translateX(-50%) scale(1); opacity: 1; }
+    }
+
+    .cycle {
+      display: inline-block;
+      animation: fade 8s infinite;
+    }
+
+    @keyframes fade {
+      0%, 20% { opacity: 1; }
+      25%, 45% { opacity: 0; }
+      50%, 70% { opacity: 1; }
+      75%, 85% { opacity: 0; }
+      90%, 100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main-message">
+      Drop a comment to play <span class="highlight">1 vs 1</span>
+    </div>
+    <div class="cycle-text">
+      <span class="cycle" id="cyclingText">Subscribe</span>
+    </div>
+  </div>
+
+  <script>
+    const texts = ["Subscribe", "Like", "Comment", "@u7karsh0056"];
+    let index = 0;
+    const el = document.getElementById("cyclingText");
+
+    setInterval(() => {
+      el.style.opacity = 0;
+      setTimeout(() => {
+        index = (index + 1) % texts.length;
+        el.textContent = texts[index];
+        el.style.opacity = 1;
+      }, 500);
+    }, 3000);
+  </script>
+</body>
+</html>
